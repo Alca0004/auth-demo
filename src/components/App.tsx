@@ -7,7 +7,7 @@ import {
   Navigate,
 } from 'react-router-dom';
 
-import About from './About';
+import About from '../About';
 import Navigation from './Navigation';
 import Landing from './Landing';
 import Login from './Login';
