@@ -38,16 +38,12 @@ const ErrorMessage = (props: { error: string }) => {
 
 //   console.log(user);
 
-export default function Form({ submit }: any) {
+export default function Form({ submit, loading, error }: any) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
   const onSubmit = (e: any) => {
     e.preventDefault();
-    const result = submit(email, password);
-    if (result.error) {
-      setError(result.error);
-    }
+    submit(email, password);
   };
 
   return (
@@ -75,8 +71,10 @@ export default function Form({ submit }: any) {
         <button
           type="submit"
           className="my-3 py-1 w-full rounded bg-blue-600 text-blue-200"
+          disabled={loading}
+          style={{ opacity: loading ? 0.3 : 1 }}
         >
-          Submit
+          {loading ? 'Submitted...' : 'Submit'}
         </button>
       </div>
     </form>

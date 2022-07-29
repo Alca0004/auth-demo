@@ -7,13 +7,16 @@ import {
   Navigate,
 } from 'react-router-dom';
 
-import About from '../About';
-import Navigation from './Navigation';
-import Landing from './Landing';
-import Login from './Login';
-import Register from './Register';
-import Dashboard from './Dashboard';
-import { AuthContainer, useAuth } from './Auth';
+import About from './pages/About';
+import Landing from './pages/Landing';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import Dashboard from './pages/Dashboard';
+
+import Navigation from './components/Navigation';
+import { AuthContainer, useAuth } from './components/Auth';
+
+// if the users information is in data base then it will be redirected to dashboard
 
 const AuthenticationRoute = ({ loggedInUser, children }: any) => {
   if (loggedInUser) {
@@ -23,6 +26,8 @@ const AuthenticationRoute = ({ loggedInUser, children }: any) => {
   return children;
 };
 
+// If its not a logged in user then it will be redirected to login page
+
 const ProtectedRoute = ({ loggedInUser, children }: any) => {
   if (!loggedInUser) {
     return <Navigate to="/login" replace />;
@@ -30,6 +35,8 @@ const ProtectedRoute = ({ loggedInUser, children }: any) => {
 
   return children;
 };
+
+// This is the main component of the app
 
 export function Content() {
   const { user } = useAuth();

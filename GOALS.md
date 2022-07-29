@@ -11,7 +11,7 @@ Todos:
   - Implement simple DB
 
 - TODOS:
-  - add comments to Auth.tsx, Backend.js, App.tsx
+  - add comments to Auth.tsx, Backend.js ✅, App.tsx
   - create friends list https://tailwindui.com/components/application-ui/lists/grid-lists
   - create explore page with public users: https://tailwindui.com/components/application-ui/lists/grid-lists
   - add friend feature from public users
@@ -27,4 +27,3 @@ Notes:
 - Custom React Hook - https://reactjs.org/docs/hooks-custom.html
 - Context - https://reactjs.org/docs/context.html
 - Axios Post - https://axios-http.com/docs/post_example
--

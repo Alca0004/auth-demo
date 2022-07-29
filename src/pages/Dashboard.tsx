@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import Form from './Form';
 
-import { useAuth } from './Auth';
+import Form from '../components/Form';
+import { useAuth } from '../components/Auth';
 
 interface User {
   email: string;

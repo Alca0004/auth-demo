@@ -15,7 +15,13 @@ export function AuthContainer({ children }: any) {
   return <AuthContext.Provider value={auth}>{children}</AuthContext.Provider>;
 }
 
+//  this promise will be used when the user clicks submit button
+
+const delay = (ms: number) => new Promise((success) => setTimeout(success, ms));
+
 export const _useAuth = () => {
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
   const [token, setToken] = useState('');
   const [user, setUser] = useState(undefined);
   const [friends, setFriends] = useState([]);
@@ -36,11 +42,21 @@ export const _useAuth = () => {
 
   const login = async (email: string, password: string) => {
     try {
+      setError('');
+      setLoading(true);
       const { data } = await axios.post('http://localhost:3001/login', {
         email,
         password,
       });
+      await delay(5000);
+
+      setLoading(false);
+
       console.log('From Backend', data);
+      if (data.error) {
+        setError(data.error);
+        return data;
+      }
 
       setUser(data.user);
       setToken(data.token);
@@ -52,12 +68,24 @@ export const _useAuth = () => {
     }
   };
 
+  ///
+
   const register = async (email: string, password: string) => {
+    setError('');
+    setLoading(true);
     const { data } = await axios.post('http://localhost:3001/register', {
       email,
       password,
     });
+    await delay(5000);
+
+    setLoading(false);
+
     console.log('From Backend', data);
+    if (data.error) {
+      setError(data.error);
+      return data;
+    }
 
     setUser(data.user);
     setToken(data.token);
@@ -65,5 +93,5 @@ export const _useAuth = () => {
     return data;
   };
 
-  return { user, login, register, getFriends, friends };
+  return { user, login, register, getFriends, friends, error, loading };
 };

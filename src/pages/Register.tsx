@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom';
 
-import Form from './Form';
-import { useAuth } from './Auth';
+import Form from '../components/Form';
+import { useAuth } from '../components/Auth';
 
 export default function Register() {
-  const { user, register } = useAuth();
+  const { user, register, loading, error } = useAuth();
 
   return (
     <div className="bg-white h-screen w-screen flex justify-center items-center">
@@ -27,7 +27,7 @@ export default function Register() {
           <h2 className="text-2xl font-bold">Register</h2>
         </div>
 
-        <Form submit={register} />
+        <Form submit={register} error={error} loading={loading} />
 
         <div className="flex flex-col items-center justify-center my-3">
           <p className="text-xs text-gray-500">

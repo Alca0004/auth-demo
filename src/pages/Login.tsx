@@ -1,12 +1,12 @@
 import { Link } from 'react-router-dom';
 
-import Form from './Form';
-import { useAuth } from './Auth';
+import Form from '../components/Form';
+import { useAuth } from '../components/Auth';
 
 interface Props {}
 
 export default function Login(props: Props) {
-  const { user, login } = useAuth();
+  const { user, login, loading, error } = useAuth();
 
   return (
     <div className="bg-white h-screen w-screen flex justify-center items-center">
@@ -29,7 +29,7 @@ export default function Login(props: Props) {
           <h2 className="text-2xl font-bold">Login</h2>
         </div>
 
-        <Form submit={login} />
+        <Form submit={login} error={error} loading={loading} />
 
         <div className="flex flex-col items-center justify-center my-3">
           <p className="text-xs text-gray-500">
